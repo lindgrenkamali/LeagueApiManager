@@ -11,7 +11,7 @@ namespace ConsoleApplication
     {
         private static string APIKey { get; set; }
 
-        private static async void Setup()
+        private static async Task Setup()
         {
             string apiKey = ApiKey.Get();
 
@@ -27,17 +27,17 @@ namespace ConsoleApplication
 
         }
 
-        private static void Run()
+        public async static Task Run()
         {
 
-            Setup();
+            await Setup();
             Console.WriteLine("Press 1: To see all current free champions");
             int intKey = Input.Loop(1, 1);
 
             switch(intKey)
             {
                 case 1:
-                    Application.API.Champion_V3.Get()
+                    Application.API.Champion_V3.GetChampionNames(APIKey);
                     break;
 
                 default:

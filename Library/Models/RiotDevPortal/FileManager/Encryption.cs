@@ -10,7 +10,7 @@ namespace Library.Models.RiotDevPortal.FileManager
 {
     public class Encryption
     {
-        public static bool CreateVector()
+        public static byte[] CreateVector()
         {
             using (Aes aes = Aes.Create())
             {
@@ -18,7 +18,7 @@ namespace Library.Models.RiotDevPortal.FileManager
 
                 if (File.Exists("vector"))
                 {
-                    return false;
+                    return null;
                 }
 
                 try
@@ -28,12 +28,12 @@ namespace Library.Models.RiotDevPortal.FileManager
                         fs.Write(vector, 0, vector.Length);
 
                     }
-                    return true;
+                    return vector;
                 }
                 catch
                 {
 
-                    return false;
+                    return null;
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace Library.Models.RiotDevPortal.FileManager
             }
             catch
             {
-                return null;
+                return CreateVector();
             }
         }
 

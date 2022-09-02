@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.RiotDevPortal.Models
 {
-    public struct ChampionV3
+    public struct Normal
     {
         [JsonProperty("maxNewPlayerLevel")]
         public int MaxNewPlayerLevel { get; set; }
@@ -18,5 +18,23 @@ namespace Library.Models.RiotDevPortal.Models
         [JsonProperty("freeChampionIds")]
 
         public List<int> FreeChampionIds { get; set; }
+    }
+
+    public struct Converted
+    {
+        public Converted()
+        {
+            MaxNewPlayerLevel = 0;
+            FreeChampionIdsForNewPlayers = new List<string>();
+            FreeChampionIds = new List<string>();
+        }
+
+        public int MaxNewPlayerLevel { get; set; }
+
+
+        public List<string> FreeChampionIdsForNewPlayers { get; set; }
+
+
+        public List<string> FreeChampionIds { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Library.Models.DataDragon;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,13 +27,18 @@ namespace Application.API
             }
         }
 
-        public async static Task<Json> GetJson(string version)
+        public async static Task<Json> GetJson()
         {
-            string url = $"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json";
+            string url = $"http://ddragon.leagueoflegends.com/cdn/{await GetLatestVersion()}/data/en_US/champion.json";
 
-            return 
+            return JsonConvert.DeserializeObject<Json>(await Response.Get(url));
         }
 
+
+        public static string ChampionNumberToChampionName(Json json, int championNumber)
+        {
+            return json.Data.Where(x => x.Value.Key == championNumber).SingleOrDefault().Value.Name;
+        }
 
     }
 }

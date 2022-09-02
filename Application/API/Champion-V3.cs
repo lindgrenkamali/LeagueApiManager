@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Library.Models.DataDragon;
+using Library.Models.RiotDevPortal.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ namespace Application.API
 {
     public class Champion_V3
     {
-        public static async Task<List<int>> GetChampionNumbers(string key)
+        public static async Task<Normal> GetChampionRotation(string key)
         {
             string url = $"https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key={key}";
 
@@ -22,24 +24,41 @@ namespace Application.API
                     {
                         using (HttpContent content = res.Content)
                         {
-                            return JsonConvert.DeserializeObject<List<int>>(await content.ReadAsStringAsync());
+                            return JsonConvert.DeserializeObject<Normal>(await content.ReadAsStringAsync());
 
                         }
                     }
 
                     else
                     {
-                        return new List<int>();
+                        return new Normal();
                     }
 
                 }
             }
         }
 
-        public static async Task<List<string>> GetChampionNames(string key)
+        public static async Task<Converted> GetChampionNames(string key)
         {
-            var championNumbers = GetChampionNumbers(key);
+            Normal championNumbers = await GetChampionRotation(key);
+            Json json = await DataDragon.GetJson();
             
+
+            Converted championNames = new Converted();
+
+            championNames.MaxNewPlayerLevel = championNumbers.MaxNewPlayerLevel;
+
+            foreach (var number in championNumbers.FreeChampionIdsForNewPlayers)
+            {
+                championNames.FreeChampionIdsForNewPlayers.Add(DataDragon.ChampionNumberToChampionName(json, number));
+            }
+
+            foreach (var number in championNumbers.FreeChampionIds)
+            {
+                championNames.FreeChampionIds.Add(DataDragon.ChampionNumberToChampionName(json, number));
+            }
+
+            return championNames;
 
         }
     }
