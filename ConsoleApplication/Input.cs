@@ -1,4 +1,6 @@
 ﻿using Application;
+using Application.Enum;
+using Library.Models.RiotDevPortal.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,7 @@ namespace ConsoleApplication
             return apiKey;
         }
 
-        internal static int Loop(int min, int max)
+        internal static int IntLoop(int min, int max)
         {
             int intKey = -1;
 
@@ -36,6 +38,38 @@ namespace ConsoleApplication
             }
 
             return intKey;
+        }
+
+        internal static string StringLoop(int min, int max)
+        {
+            string inputString = "";
+
+            while (inputString.Length < min ||inputString.Length > max)
+            {
+                inputString = Console.ReadLine();
+            }
+
+            return inputString;
+        }
+
+        internal static string GetServer()
+        {
+            var names =  Enum.GetNames(typeof(Server));
+            var values = Enum.GetValues(typeof(Server));
+
+            for (int i = 0; i < names.Length; i++)
+            {
+                Console.WriteLine($"Enter {i} to select {names[i]}");
+            }
+
+            return ServerEnum.Get(IntLoop(0, names.Length)).ToString();
+        }
+
+        internal static string SummonerName()
+        {
+            Console.WriteLine("Input SummonerName(3-18)");
+            string summonerName = StringLoop(3, 18);
+            return summonerName.Replace(" ", "%20");
         }
     }
 }

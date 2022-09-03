@@ -12,9 +12,9 @@ namespace Application.API
 {
     public class Champion_V3
     {
-        public static async Task<Normal> GetChampionRotation(string key)
+        public static async Task<Normal> GetChampionRotation(string key, string server)
         {
-            string url = $"https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key={key}";
+            string url = $"https://{server}.api.riotgames.com/lol/platform/v3/champion-rotations?api_key={key}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -38,9 +38,9 @@ namespace Application.API
             }
         }
 
-        public static async Task<Converted> GetChampionNames(string key)
+        public static async Task<Converted> GetChampionNames(string key, string server)
         {
-            Normal championNumbers = await GetChampionRotation(key);
+            Normal championNumbers = await GetChampionRotation(key, server);
             Json json = await DataDragon.GetJson();
             
 

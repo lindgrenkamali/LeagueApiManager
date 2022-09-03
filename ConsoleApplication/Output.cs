@@ -9,9 +9,22 @@ namespace ConsoleApplication
 {
     internal class Output
     {
+        internal static void PrintSummonerDTO(SummonerV4 s4)
+        {
+            Console.WriteLine($"AccounId: {s4.AccountId}");
+            Console.WriteLine($"ProfileIconId: {s4.ProfileIconId}");
+            Console.WriteLine($"RevisionDate: {s4.RevisionDate}");
+            Console.WriteLine($"Name: {s4.Name}");
+            Console.WriteLine($"Id: {s4.Id}");
+            Console.WriteLine($"PUUID: {s4.PUUID}");
+            Console.WriteLine($"SummonerLevel {s4.SummonerLevel}");
+
+        }
+
         internal static void PrintChampionRotation(Converted converted)
         {
-            Console.WriteLine($"Here are all the current free champions for all the players above level{converted.MaxNewPlayerLevel}:\n");
+            Console.Clear();
+            Console.WriteLine($"Here are all the current free champions for all the players above level {converted.MaxNewPlayerLevel}:\n");
 
             foreach (var champion in converted.FreeChampionIds)
             {
