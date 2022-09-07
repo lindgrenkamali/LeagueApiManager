@@ -52,24 +52,45 @@ namespace ConsoleApplication
             return inputString;
         }
 
-        internal static string GetServer()
+        internal static string GetRegion()
         {
-            var names =  Enum.GetNames(typeof(Server));
-            var values = Enum.GetValues(typeof(Server));
+            var regions = Enum.GetNames(typeof(Region));
 
-            for (int i = 0; i < names.Length; i++)
+            for (int i = 0; i < regions.Length; i++)
             {
-                Console.WriteLine($"Enter {i} to select {names[i]}");
+                Console.WriteLine($"Enter {i} to select {regions[i]}");
             }
 
-            return ServerEnum.Get(IntLoop(0, names.Length)).ToString();
+            return RegionEnum.Get(IntLoop(0, regions.Length)).ToString();
+        }
+
+        internal static string GetServer()
+        {
+            Console.Clear();
+
+            var servers =  Enum.GetNames(typeof(Server));
+
+            for (int i = 0; i < servers.Length; i++)
+            {
+                Console.WriteLine($"Enter {i} to select {servers[i]}");
+            }
+
+            return ServerEnum.Get(IntLoop(0, servers.Length)).ToString();
         }
 
         internal static string SummonerName()
         {
             Console.WriteLine("Input SummonerName(3-18)");
             string summonerName = StringLoop(3, 18);
-            return summonerName.Replace(" ", "%20");
+            return VariableManager.RemoveSpace(summonerName);
         }
+
+        internal static string TagLine()
+        {
+            Console.WriteLine("Input TagLine(3 letters)");
+            string tagLine = StringLoop(3, 3);
+            return tagLine.ToLower();
+        }
+       
     }
 }

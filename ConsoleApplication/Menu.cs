@@ -1,5 +1,6 @@
 ﻿using Application;
 using Application.API;
+using Library.Models.DataDragon;
 using Library.Models.RiotDevPortal.Models;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,17 @@ namespace ConsoleApplication
 
         private static string Server { get; set; }
 
+        private static Json DataDragonJson { get; set; }
+
         private static async Task Setup()
         {
+            DataDragonJson = await DataDragon.GetJson();
+
             string apiKey = ApiKey.Get();
 
-            if (apiKey == "")
+            bool apiKeyValid = await ApiKey.Verify(apiKey);
+
+            if (apiKey == "" || apiKeyValid == false)
             {
                 ApiKey.Set(await Input.Key());
             }
@@ -42,9 +49,12 @@ namespace ConsoleApplication
 
         public async static Task Show()
         {
+            Console.Clear();
             Console.WriteLine("Press 1: To see all current free champions");
             Console.WriteLine("Press 2: To see a summoners SummonerDTO");
-            int intKey = Input.IntLoop(1, 2);
+            Console.WriteLine("Press 3: To get highest stats for a champion");
+            Console.WriteLine("Press 4: To get AccountDto");
+            int intKey = Input.IntLoop(1, 4);
 
             switch (intKey)
             {
@@ -58,6 +68,15 @@ namespace ConsoleApplication
                     GoBack();
                     break;
 
+                case 3:
+                    Output.PrintChampionStats(DataDragonJson);
+                    GoBack();
+                    Console.SetCursorPosition(0, 0);
+                    break;
+
+                case 4:
+                    Output.PrintAccountDto(await Account_V1.ByGameNameTagline(Input.GetRegion(), Input.SummonerName(), Input.TagLine(), APIKey));
+                    break;
                 default:
                     break;
             }
@@ -70,5 +89,7 @@ namespace ConsoleApplication
             Console.Clear();
             await Show();
         }
+
+       
     }
 }

@@ -1,4 +1,5 @@
-﻿using Library.Models.RiotDevPortal.Models;
+﻿using Library.Models.DataDragon;
+using Library.Models.RiotDevPortal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,40 @@ namespace ConsoleApplication
             {
                 Console.WriteLine(champion);
             }
+        }
+
+        internal static void PrintChampionStats(Json json)
+        {
+            Console.Clear();
+
+            foreach (var champion in json.Data.Values)
+            {
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine($"Name: {champion.Name}");
+                Console.WriteLine($"HP: {champion.Stats.Hp}");
+                Console.WriteLine($"MP: {champion.Stats.Mp}");
+                Console.WriteLine($"Armor: {champion.Stats.Armor}");
+                Console.WriteLine($"SpellBlock: {champion.Stats.SpellBlock}");
+                Console.WriteLine($"AttackDamage: {champion.Stats.AttackDamage}");
+                Console.WriteLine($"AttackSpeed: {champion.Stats.AttackSpeed}");
+                Console.WriteLine($"AttackRange: {champion.Stats.AttackRange}");
+                Console.WriteLine($"MoveSpeed: {champion.Stats.MoveSpeed}");
+                Console.WriteLine("---------------------------------------------------");
+
+            }
+
+            
+        }
+
+        internal static void PrintAccountDto(AccountDto ad)
+        {
+            Console.Clear();
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine($"PUUID: {ad.PUUID}");
+            Console.WriteLine($"GameName: {ad.GameName}");
+            Console.WriteLine($"TagLine: {ad.TagLine}");
+            Console.WriteLine("---------------------------------------------------");
+
         }
     }
 }

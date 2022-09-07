@@ -40,7 +40,7 @@ namespace Library.Models.DataDragon
         public string Partype { get; set; }
 
         [JsonProperty("stats")]
-        Stats Stats { get; set; }
+        public Stats Stats { get; set; }
 
     }
 }

@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Application.Enum
 {
-    public class ServerEnum
+    public class RegionEnum
     {
-        public static Server Get(int value)
+        public static Region Get(int value)
         {
-            return (Server)value;
+            return (Region)value;
         }
-
-       
     }
 }
