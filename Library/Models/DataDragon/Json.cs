@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.DataDragon
 {
-    public class Json
+    public class DDJson
     {
         [JsonProperty("type")]
         public string Type { get; set; }

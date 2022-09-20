@@ -1,7 +1,9 @@
 ﻿using Application;
 using Application.API;
 using Library.Models.DataDragon;
+using Library.Models.RiotDevPortal.API;
 using Library.Models.RiotDevPortal.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +18,12 @@ namespace ConsoleApplication
 
         private static string Server { get; set; }
 
-        private static Json DataDragonJson { get; set; }
+        private static DDJson DataDragonJson { get; set; }
 
         private static async Task Setup()
         {
-            DataDragonJson = await DataDragon.GetJson();
+            Response response = await DataDragon.GetJson();
+            DataDragonJson = JsonConvert.DeserializeObject<DDJson>(response.Content);
 
             string apiKey = ApiKey.Get();
 
@@ -55,6 +58,7 @@ namespace ConsoleApplication
             Console.WriteLine("Press 3: To get highest stats for a champion");
             Console.WriteLine("Press 4: To get AccountDto");
             int intKey = Input.IntLoop(1, 4);
+            Response r = new();
 
             switch (intKey)
             {
@@ -64,7 +68,17 @@ namespace ConsoleApplication
                     break;
 
                 case 2:
-                    Output.PrintSummonerDTO(await Summoner_V4.BySummonerName(Server, Input.SummonerName(), APIKey));
+                     r = await Summoner_V4.BySummonerName(Server, Input.SummonerName(), APIKey);
+
+                    if(r.Success)
+                    {
+                        Output.PrintSummonerDTO(JsonConvert.DeserializeObject<SummonerV4>(r.Content));
+                    }
+                    else
+                    {
+                        Output.PrintError(r.StatusCode);
+                    }
+                    
                     GoBack();
                     break;
 
@@ -75,7 +89,18 @@ namespace ConsoleApplication
                     break;
 
                 case 4:
-                    Output.PrintAccountDto(await Account_V1.ByGameNameTagline(Input.GetRegion(), Input.SummonerName(), Input.TagLine(), APIKey));
+                    r = await Account_V1.ByGameNameTagline(Input.GetRegion(), Input.SummonerName(), Input.TagLine(), APIKey);
+
+                    if (r.Success)
+                    {
+                        Output.PrintAccountDto(JsonConvert.DeserializeObject<AccountDto>(r.Content));
+                    }
+                    else
+                    {
+                        Output.PrintError(r.StatusCode);
+                    }
+                    
+                    GoBack();
                     break;
                 default:
                     break;

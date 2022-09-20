@@ -3,6 +3,7 @@ using Library.Models.RiotDevPortal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,7 @@ namespace ConsoleApplication
             }
         }
 
-        internal static void PrintChampionStats(Json json)
+        internal static void PrintChampionStats(DDJson json)
         {
             Console.Clear();
 
@@ -63,8 +64,14 @@ namespace ConsoleApplication
             
         }
 
+        internal static void PrintError(HttpStatusCode hsc)
+        {
+            Console.WriteLine($"The API request was {hsc} and therefore couldn't recieve any data");
+        }
+
         internal static void PrintAccountDto(AccountDto ad)
         {
+            
             Console.Clear();
             Console.WriteLine("---------------------------------------------------");
             Console.WriteLine($"PUUID: {ad.PUUID}");
@@ -72,6 +79,16 @@ namespace ConsoleApplication
             Console.WriteLine($"TagLine: {ad.TagLine}");
             Console.WriteLine("---------------------------------------------------");
 
+        }
+
+        internal static void IncorrectMessage()
+        {
+            Console.WriteLine($"The assigned credentials doesn't exist. Did you enter something wrong?");
+        }
+
+        internal static void NullMessage()
+        {
+            Console.WriteLine($"The API doesn't work right now. Try again later.");
         }
     }
 }

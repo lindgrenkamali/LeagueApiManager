@@ -41,8 +41,8 @@ namespace Application.API
         public static async Task<Converted> GetChampionNames(string key, string server)
         {
             Normal championNumbers = await GetChampionRotation(key, server);
-            Json json = await DataDragon.GetJson();
-            
+            var response = await DataDragon.GetJson();
+            DDJson json = JsonConvert.DeserializeObject<DDJson>(response.ToString());
 
             Converted championNames = new Converted();
 
