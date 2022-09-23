@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.API
 {
-    public class Summoner_V4
+    public sealed class Summoner_V4
     {
 
         public async static Task<Response> BySummonerName(string server, string summonerName, string key)

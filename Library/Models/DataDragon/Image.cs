@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.DataDragon
 {
-    public class Image
+    public sealed class Image
     {
         [JsonProperty("full")]
         public string Full { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Enum
 {
-    public class ServerEnum
+    public sealed class ServerEnum
     {
         public static Server Get(int value)
         {

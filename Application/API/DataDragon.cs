@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.API
 {
-    public class DataDragon
+    public sealed class DataDragon
     {
         private static readonly string Url = "https://ddragon.leagueoflegends.com/api/versions.json";
 

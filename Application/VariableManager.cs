@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    public class VariableManager
+    public sealed class VariableManager
     {
 
         public static string RemoveSpace(string text)

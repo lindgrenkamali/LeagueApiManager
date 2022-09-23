@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.RiotDevPortal.Models
 {
-    public class ChampionMasteryDto
+    public sealed class ChampionMasteryDto
     {
         [JsonProperty("tokensEarned")]
         public long ChampionPointsUntilNextLevel { get; set; }

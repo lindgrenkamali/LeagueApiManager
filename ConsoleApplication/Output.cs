@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication
 {
-    internal class Output
+    internal sealed class Output
     {
         internal static void PrintSummonerDTO(SummonerV4 s4)
         {

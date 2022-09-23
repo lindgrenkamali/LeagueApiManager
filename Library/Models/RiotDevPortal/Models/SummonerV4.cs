@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.RiotDevPortal.Models
 {
-    public class SummonerV4
+    public sealed class SummonerV4
     {
         [JsonProperty("accountId")]
         public string AccountId { get; set; }

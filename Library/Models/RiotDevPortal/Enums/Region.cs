@@ -10,8 +10,8 @@ namespace Library.Models.RiotDevPortal.Enums
     {
         americas = 0,
         asia = 1,
-        europe = 2
-        //, esports = 3
+        europe = 2,
+        esports = 3
 
 
     }

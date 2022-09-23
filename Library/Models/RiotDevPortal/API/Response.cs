@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.RiotDevPortal.API
 {
-    public class Response
+    public sealed class Response
     {
         public HttpStatusCode StatusCode { get; set; }
 

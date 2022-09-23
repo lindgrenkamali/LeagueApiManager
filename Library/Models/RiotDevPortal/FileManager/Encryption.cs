@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.RiotDevPortal.FileManager
 {
-    public class Encryption
+    public sealed class Encryption
     {
         public static byte[] CreateVector()
         {

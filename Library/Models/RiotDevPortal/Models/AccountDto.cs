@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.RiotDevPortal.Models
 {
-    public class AccountDto
+    public sealed class AccountDto
     {
         [JsonProperty("puuid")]
         public string PUUID { get; set; }

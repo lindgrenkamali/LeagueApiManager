@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.DataDragon
 {
-    public class Info
+    public sealed class Info
     {
         [JsonProperty("attack")]
         public decimal Attack { get; set; }

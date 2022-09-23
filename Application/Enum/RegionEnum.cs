@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Enum
 {
-    public class RegionEnum
+    public sealed class RegionEnum
     {
         public static Region Get(int value)
         {

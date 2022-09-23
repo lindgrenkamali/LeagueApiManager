@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.API
 {
-    public class Champion_V3
+    public sealed class Champion_V3
     {
         public static async Task<Normal> GetChampionRotation(string key, string server)
         {

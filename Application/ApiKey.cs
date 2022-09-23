@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application
 {
-    public class ApiKey
+    public sealed class ApiKey
     {
         public static string Get()
         {

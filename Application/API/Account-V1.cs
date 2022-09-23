@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.API
 {
-    public class Account_V1
+    public sealed class Account_V1
     {
         public static async Task<Response> ByPuuid(string region, string puuid)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Models.DataDragon
 {
-    public class Champion
+    public sealed class Champion
     {
         [JsonProperty("version")]
         public string Version { get; set; }
