@@ -125,7 +125,7 @@ namespace ConsoleApplication
             }
         }
 
-        public async static void GoBack()
+        public static void GoBack()
         {
             Console.WriteLine("\nPress any key to go back");
             Console.ReadKey();
