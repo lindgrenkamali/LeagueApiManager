@@ -9,17 +9,17 @@ namespace Library.Models.RiotDevPortal.Enums
 
     public enum Server
     {
-        BR1 = 0,
-        EUN1 = 1,
-        EUW1 = 2,
-        JP1 = 3,
-        KR = 4,
-        LA1 = 5,
-        LA2 = 6,
-        NA1 = 7,
-        OC1 = 8,
-        TR1 = 9,
-        RU = 10
+        BR1 = 1,
+        EUN1 = 2,
+        EUW1 = 3,
+        JP1 = 4,
+        KR = 5,
+        LA1 = 6,
+        LA2 = 7,
+        NA1 = 8,
+        OC1 = 9,
+        TR1 = 10,
+        RU = 11
     }
 
 }

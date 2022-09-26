@@ -1,22 +1,18 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Library.Models.RiotDevPortal.Models
 {
     public sealed class ChampionMasteryDto
     {
-        [JsonProperty("tokensEarned")]
+        [JsonProperty("championPointsUntilNextLevel")]
         public long ChampionPointsUntilNextLevel { get; set; }
 
         [JsonProperty("chestGranted")]
         public bool ChestGranted { get; set; }
 
         [JsonProperty("championId")]
-        public long ChampionId { get; set; }
+        public int ChampionId { get; set; }
 
         [JsonProperty("lastPlayTime")]
         public long LastPlayTime { get; set; }

@@ -30,11 +30,12 @@ namespace ConsoleApplication
 
         internal static int IntLoop(int min, int max)
         {
-            int intKey = -1;
+            int intKey = 0;
 
             while (intKey > max || intKey < min)
             {
-                int.TryParse(Console.ReadLine(), out intKey);
+                var input = Console.ReadLine();
+                int.TryParse(input, out intKey);
             }
 
             return intKey;
@@ -58,10 +59,10 @@ namespace ConsoleApplication
 
             for (int i = 0; i < regions.Length; i++)
             {
-                Console.WriteLine($"Enter {i} to select {regions[i]}");
+                Console.WriteLine($"Enter {i+1} to select {regions[i]}");
             }
 
-            return RegionEnum.Get(IntLoop(0, regions.Length)).ToString();
+            return RegionEnum.Get(IntLoop(1, regions.Length)).ToString();
         }
 
         internal static string GetServer()
@@ -72,10 +73,10 @@ namespace ConsoleApplication
 
             for (int i = 0; i < servers.Length; i++)
             {
-                Console.WriteLine($"Enter {i} to select {servers[i]}");
+                Console.WriteLine($"Enter {i + 1} to select {servers[i]}");
             }
 
-            return ServerEnum.Get(IntLoop(0, servers.Length)).ToString();
+            return ServerEnum.Get(IntLoop(1, servers.Length)).ToString();
         }
 
         internal static string SummonerName()
@@ -83,6 +84,13 @@ namespace ConsoleApplication
             Console.WriteLine("Input SummonerName(3-18)");
             string summonerName = StringLoop(3, 18);
             return VariableManager.RemoveSpace(summonerName);
+        }
+
+        internal static string EncryptedSummonerId()
+        {
+            Console.WriteLine("Input EncryptedSummonerId");
+            string encryptedsummonerid = StringLoop(40, 63);
+            return encryptedsummonerid;
         }
 
         internal static string TagLine()

@@ -1,4 +1,5 @@
-﻿using Library.Models.DataDragon;
+﻿using Application.API;
+using Library.Models.DataDragon;
 using Library.Models.RiotDevPortal.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace ConsoleApplication
     {
         internal static void PrintSummonerDTO(SummonerV4 s4)
         {
-            Console.WriteLine($"AccounId: {s4.AccountId}");
+            Console.WriteLine($"AccountId: {s4.AccountId}");
             Console.WriteLine($"ProfileIconId: {s4.ProfileIconId}");
             Console.WriteLine($"RevisionDate: {s4.RevisionDate}");
             Console.WriteLine($"Name: {s4.Name}");
@@ -49,12 +50,12 @@ namespace ConsoleApplication
             {
                 Console.WriteLine("---------------------------------------------------");
                 Console.WriteLine($"Name: {champion.Name}");
-                Console.WriteLine($"HP: {champion.Stats.Hp}");
-                Console.WriteLine($"MP: {champion.Stats.Mp}");
-                Console.WriteLine($"Armor: {champion.Stats.Armor}");
+                Console.WriteLine($"Hp: {champion.Stats.Hp}".PadRight(20) + $"HpPerLevel: {champion.Stats.HpPerLevel}");
+                Console.WriteLine($"Mp: {champion.Stats.Mp}".PadRight(20) + $"MpPerLevel: {champion.Stats.MpPerLevel}");
+                Console.WriteLine($"Armor: {champion.Stats.Armor}".PadRight(20) + $"ArmorPerLevel: {champion.Stats.ArmorPerLevel}");
                 Console.WriteLine($"SpellBlock: {champion.Stats.SpellBlock}");
-                Console.WriteLine($"AttackDamage: {champion.Stats.AttackDamage}");
-                Console.WriteLine($"AttackSpeed: {champion.Stats.AttackSpeed}");
+                Console.WriteLine($"AttackDamage: {champion.Stats.AttackDamage}".PadRight(20) + $"AttackDamagePerLevel: {champion.Stats.AttackDamagePerLevel}");
+                Console.WriteLine($"AttackSpeed: {champion.Stats.AttackSpeed}".PadRight(20) + $"AttackSpeedPerLevel: {(champion.Stats.AttackSpeedPerLevel/100) * champion.Stats.AttackSpeed}");
                 Console.WriteLine($"AttackRange: {champion.Stats.AttackRange}");
                 Console.WriteLine($"MoveSpeed: {champion.Stats.MoveSpeed}");
                 Console.WriteLine("---------------------------------------------------");
@@ -81,14 +82,23 @@ namespace ConsoleApplication
 
         }
 
-        internal static void IncorrectMessage()
-        {
-            Console.WriteLine($"The assigned credentials doesn't exist. Did you enter something wrong?");
-        }
 
-        internal static void NullMessage()
+        internal static void PrintChampionMasteries(List<ChampionMasteryDto> listCMD, DDJson ddj)
         {
-            Console.WriteLine($"The API doesn't work right now. Try again later.");
+            Console.Clear();
+            foreach (var cmd in listCMD)
+            {
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine($"Champion: {DataDragon.ChampionNumberToChampionName(ddj, cmd.ChampionId)}");
+                Console.WriteLine($"Level: {cmd.ChampionLevel}");
+                Console.WriteLine($"Points: {cmd.ChampionPoints}");
+                Console.WriteLine($"TokensEarned: {cmd.TokensEarned}");
+                Console.WriteLine($"PointsSinceLastLevel: {cmd.ChampionPointsSinceLastLevel}");
+                Console.WriteLine($"PointsUntilNextLevel: {cmd.ChampionPointsUntilNextLevel}");
+                Console.WriteLine($"ChestGranted: {(cmd.ChestGranted ? "Yes" : "No")}");
+                Console.WriteLine($"LastPlayTime: {cmd.LastPlayTime}");
+                Console.WriteLine("---------------------------------------------------");
+            }
         }
     }
 }

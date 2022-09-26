@@ -4,11 +4,7 @@ using Library.Models.DataDragon;
 using Library.Models.RiotDevPortal.API;
 using Library.Models.RiotDevPortal.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ConsoleApplication
 {
@@ -52,12 +48,18 @@ namespace ConsoleApplication
 
         public async static Task Show()
         {
+            while(true)
+            {
+
+            
             Console.Clear();
             Console.WriteLine("Press 1: To see all current free champions");
-            Console.WriteLine("Press 2: To see a summoners SummonerDTO");
-            Console.WriteLine("Press 3: To get highest stats for a champion");
-            Console.WriteLine("Press 4: To get AccountDto");
-            int intKey = Input.IntLoop(1, 4);
+            Console.WriteLine("Press 2: To get SummonerDTO(accountid, profileiconid, revisiondate, name, id, puuid and summonerlevel)");
+            Console.WriteLine("Press 3: To get stats for champions");
+            Console.WriteLine("Press 4: To get AccountDto(puuid, gamename and tagline)");
+            Console.WriteLine("Press 5: To list ChampionMasteryDtos");
+
+            int intKey = Input.IntLoop(1, 5);
             Response r = new();
 
             switch (intKey)
@@ -102,8 +104,24 @@ namespace ConsoleApplication
                     
                     GoBack();
                     break;
+
+                    case 5:
+                    r = await Champion_Mastery_V4.ByEncryptedSummonerId(Server, Input.EncryptedSummonerId(), APIKey);
+
+                    if(r.Success)
+                    {
+                        Output.PrintChampionMasteries(JsonConvert.DeserializeObject<List<ChampionMasteryDto>>(r.Content), DataDragonJson);
+                    }
+
+                    else
+                    {
+                        Output.PrintError(r.StatusCode);
+                    }
+                    GoBack();
+                    break;
                 default:
                     break;
+            }
             }
         }
 
@@ -111,8 +129,6 @@ namespace ConsoleApplication
         {
             Console.WriteLine("\nPress any key to go back");
             Console.ReadKey();
-            Console.Clear();
-            await Show();
         }
 
        

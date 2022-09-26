@@ -1,48 +1,25 @@
 ﻿using Library.Models.DataDragon;
+using Library.Models.RiotDevPortal.API;
 using Library.Models.RiotDevPortal.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Application.API
 {
     public sealed class Champion_V3
     {
-        public static async Task<Normal> GetChampionRotation(string key, string server)
+        public static async Task<Response> GetChampionRotation(string key, string server)
         {
             string url = $"https://{server}.api.riotgames.com/lol/platform/v3/champion-rotations?api_key={key}";
 
-            using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage res = await client.GetAsync(url))
-                {
-                    if (res.IsSuccessStatusCode)
-                    {
-                        using (HttpContent content = res.Content)
-                        {
-                            return JsonConvert.DeserializeObject<Normal>(await content.ReadAsStringAsync());
-
-                        }
-                    }
-
-                    else
-                    {
-                        return new Normal();
-                    }
-
-                }
-            }
+            return await Response.Get(url);
         }
 
         public static async Task<Converted> GetChampionNames(string key, string server)
         {
-            Normal championNumbers = await GetChampionRotation(key, server);
+            Normal championNumbers = JsonConvert.DeserializeObject<Normal>((await GetChampionRotation(key, server)).Content);
             var response = await DataDragon.GetJson();
-            DDJson json = JsonConvert.DeserializeObject<DDJson>(response.ToString());
+            DDJson json = JsonConvert.DeserializeObject<DDJson>(response.Content.ToString());
 
             Converted championNames = new Converted();
 
