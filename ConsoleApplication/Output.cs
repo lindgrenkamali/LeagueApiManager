@@ -97,7 +97,8 @@ namespace ConsoleApplication
                 Console.WriteLine($"PointsUntilNextLevel: {cmd.ChampionPointsUntilNextLevel}");
                 Console.WriteLine($"ChestGranted: {(cmd.ChestGranted ? "Yes" : "No")}");
                 Console.WriteLine($"LastPlayTime: {cmd.LastPlayTime}");
-                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine("---------------------------------------------------\n");
+                
             }
         }
     }
