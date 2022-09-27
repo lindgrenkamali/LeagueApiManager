@@ -1,4 +1,4 @@
-Work in progress...
+# Work in progress...
 
 # LeagueApiManager - Console Application
 
@@ -6,9 +6,9 @@ Work in progress...
 A League of Legends account and a API-key to work
 
 # Features
-Gets information from RiotDevPortal and DataDragon APIs
-Encrypts your API-key with AES
-Shows you the free available champions
+Gets information from RiotDevPortal and DataDragon APIs<br/>
+Encrypts your API-key with AES<br/>
+Shows you the free available champions<br/>
 Getting SummonerDTO, AccountDTO and shows stats of champions level 1
 
 # Problems
