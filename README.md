@@ -16,4 +16,4 @@ Sometimes some of the RiotDevPortal APIs doesn't work(from their end).
 
 # Example Images
 
-![Menu] (https://github.com/lindgrenkamali/LeagueApiManager/blob/master/README-IMAGES/Menu.PNG?raw=true)
+<img src="https://github.com/lindgrenkamali/LeagueApiManager/blob/master/README-IMAGES/Menu.PNG?raw=true" />
