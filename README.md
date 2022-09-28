@@ -16,8 +16,7 @@ Sometimes some of the RiotDevPortal APIs doesn't work(from their end).
 
 # Example Images
 
-<img src="https://github.com/lindgrenkamali/LeagueApiManager/blob/master/README-IMAGES/Menu.PNG?raw=true" />
-The menu where you can choose from several alternatives which will get data from an API<br/><br/>
+<img src="https://github.com/lindgrenkamali/LeagueApiManager/blob/master/README-IMAGES/Menu.PNG?raw=true" /> The menu where you can choose from several alternatives which will get data from an API<br/><br/>
 
 <img src="https://github.com/lindgrenkamali/LeagueApiManager/blob/master/README-IMAGES/Masterydtos.png?raw=true" />
 Gets all the MasteryDtos from a player and lists the from highest to lowest.
